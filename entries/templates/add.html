@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dear Diary</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/index.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" />
+
+    <style>
+        .output{
+            display: block;
+            width: 70%;
+            height: 200px;
+            margin: 50px auto;
+        }
+        .footer1 {
+            position: relative;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #728256;
+            color: white;
+            text-align: center;
+            max-height: 60px !important;
+            height: 100%;
+         }
+    </style>
+</head>
+
+<body>
+    <section style="background-color: #3a5e66;" class="hero is-primary">
+        <div class="hero-body">
+            <div class="container" style="display: flex; justify-content:space-between;">
+
+                <div>
+                    <h1 class="title">
+                        Dear Diary
+                    </h1>
+                </div>
+                <div>
+                    <h1 style="font-size: 25px;">Add a Note</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="margin: 30px 0 0 30px;">
+        <div>
+            <a href="{% url 'home' %}"><button style="cursor: pointer;">Back to Home</button></a>
+        </div>
+    </section>
+    <hr />
+
+    <section>
+        <div>
+        <ul style="list-style-type:disc ; margin-left:30px; font-size: 20px;" ><h2 style="font-weight: 600;">
+            You can add your note in following ways:</h2>
+            <li style="margin-left: 50px; font-size: 18px; font-weight: 400">Writing in the textarea below</li>
+            <li style="margin-left: 50px; font-size: 18px; font-weight: 400">or by Speaking(click start button to start the mic and end button to end it)</li>
+            
+        </ul>
+    </div>
+    </section>
+
+
+    <section class="section">
+        <button style="cursor: pointer;" class="btn-start">&#127908; <strong>Start</strong></button>
+        <button style="margin-left: 10px; cursor: pointer;" class="btn-end"><strong>End</strong></button>
+    
+
+            <form method='POST' action="{% url 'add' request.session.user %}">
+                {% csrf_token %}
+               
+                        <textarea class="output" name="text" placeholder="Dear dairy ..."></textarea>
+                    
+
+                <div class="field is-grouped is-grouped-right">
+                    <div class="control">
+                        <button class="button is-link">Save</button>
+                    </div>
+                </div>
+            </form>
+    </section>    
+        
+    <div class="footer1">
+        <p style="padding-top: 10px;">Copyright © 2021 Ram Lakhan Singh All Right Reserved</p>
+    </div>
+
+    
+</body>
+<script src="{% static '/js/app.js' %}"></script>
+</html>
